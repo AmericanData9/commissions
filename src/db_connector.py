@@ -22,7 +22,8 @@ def get_query(qry):
         database = 'commissions',
         port = '5432'
     )
-
+    
+    cursor = connect.cursor()
     cursor.execute(qry)
     data = cursor.fetchall()
     return data
