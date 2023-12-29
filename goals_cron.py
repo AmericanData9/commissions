@@ -23,7 +23,7 @@ AS SELECT * FROM goals_all_contracts_items WHERE signature_month={close_date_mon
 
 ####---- CREATION OF THE MATERIALIZED VIEW QUERY FROM THE NORMAL VIEW CALLED: goal_sales ----####
 goals_materialized_view = f"""CREATE MATERIALIZED VIEW goals_sales_mview_{close_date}
-AS SELECT * FROM goal_sales 
+AS SELECT * FROM goals_sales 
 WHERE signature_month={close_date_month} AND signature_year={close_date_year} WITH DATA;"""
 
 ####---- REFRESH MATERIALIZED VIEW CALLED: all_contracts_items_goals_mview{close_date} ----####
@@ -36,3 +36,8 @@ push_query(all_contracts_materialized_view)
 push_query(goals_materialized_view)
 # push_query(refresh_all_contracts_items_goals_mview_query)
 # push_query(refresh_goal_sales_mview_query)
+# qry = f"SELECT * FROM coms_formatted_data WHERE signature_month={close_date_month} AND signature_year={close_date_year}"
+# val = get_query(qry)
+# for x in val:
+#     print(str(x) + '\n') 
+    
